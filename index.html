@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="style.css">
+</head><body >
+
+<h2 style="text-align:center">Lightbox</h2>
+
+<div class="row" id="row">
+        
+<script src="lightbox.js"></script>
+  <script>
+var  imagesrcs = imagedata
+      
+for (var i = 0; i < imagesrcs.length; i++) {
+    var imgouter = document.createElement("div");
+    var img = document.createElement("img");
+    imgouter.appendChild(img);
+    imgouter.className = "column";
+    img.src = imagesrcs[i]['imagesrc'];
+    img.alt = imagesrcs[i]['alt'];
+    img.className = "hover-shadow cursor";
+    img.style.width = "100%";
+    document.getElementById("row").appendChild(imgouter);
+    img.addEventListener("click", function(){
+        openModal()
+        currentSlide(i+1)
+    })
+    break;
+}
+  </script>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" id="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content" id="modal-content">
+
+   <script>
+    var  imgsrcs = imagedata
+    
+    for (var i=0; i < imgsrcs.length; i++){
+        
+        var slideOuter = document.createElement("div");
+        var slide = document.createElement("img");
+        var slideTextdiv = document.createElement("div");
+        var slideText = document.createElement("p");
+        slideTextdiv.appendChild(slideText);
+        slideOuter.appendChild(slide);
+        slideOuter.appendChild(slideTextdiv);
+        slideTextdiv.className = "caption-container";
+        slideText.id = "caption";
+        slideText.innerText = imgsrcs[i]['caption'];
+        slideOuter.className = "mySlides";
+        slide.src = imgsrcs[i]['imagesrc'];
+        slide.alt = imgsrcs[i]['alt'];
+    
+        slide.style.width = "100%"
+        document.getElementById("modal-content").appendChild(slideOuter);
+        
+        
+       
+     
+    }
+    
+    var controlnext  = document.createElement("a");
+    var controlprev = document.createElement("a");
+    controlnext.className = "next";
+    controlprev.className = "prev";
+    controlnext.innerHTML = "&#10095;"
+    controlprev.innerHTML = "&#10094;"
+    document.getElementById("modal-content").appendChild(controlnext);
+    document.getElementById("modal-content").appendChild(controlprev);
+    controlnext.addEventListener("click", function(){
+        plusSlides(1)
+    })
+    controlprev.addEventListener("click", function(){
+        plusSlides(-1)
+    })
+    
+
+
+   </script>
+    
+  
+
+
+    
+
+</div>
+
+
+
+
+
+
+
+<script>
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+ 
+  slides[slideIndex-1].style.display = "block";
+
+  
+}
+</script>
+<script type="text/javascript" src="lighthouse.js"></script>
+
+
+</body></html>
